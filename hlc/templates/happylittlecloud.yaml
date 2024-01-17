@@ -1,0 +1,19 @@
+{{- if .Values.hlc-site.enabled }}
+# Imma make the happy litle cloud single-serving site here
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: happy-little-cloud
+  namespace: happy-little-cloud
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: happy-little-cloud
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  source:
+    path: hlc-site
+    repoURL: https://github.com/eaglerock1337/happy-little-cloud
+    targetRevision: HEAD
+{{- end }}

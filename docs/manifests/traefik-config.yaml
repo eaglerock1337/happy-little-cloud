@@ -1,0 +1,13 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    certResolvers:
+      letsencrypt:
+        email: peter.marks@gmail.com
+        tlsChallenge: true
+        storage: /data/acme.json
+        

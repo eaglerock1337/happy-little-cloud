@@ -1,0 +1,32 @@
+redis-ha:
+  enabled: true
+
+controller:
+  replicas: 1
+
+server:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+    ingressClassName: "traefik"
+    tls:
+      - secretName: argocd-server-tls
+        hosts:
+          - argocd.marks.dev
+
+repoServer:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+
+applicationSet:
+  replicas: 2
+
+configs:
+  params:
+    server.insecure: true

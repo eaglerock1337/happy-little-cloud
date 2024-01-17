@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: argocd-server-tls
+  namespace: argocd
+spec:
+  secretName: argocd-secret
+  renewBefore: 240h
+  dnsNames:
+  - 'argocd.marks.dev'
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
