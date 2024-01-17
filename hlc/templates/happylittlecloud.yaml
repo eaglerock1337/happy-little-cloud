@@ -3,13 +3,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: happy-little-cloud
-  namespace: happy-little-cloud
+  name: hlc-site
+  namespace: hlc-site
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: happy-little-cloud
+    namespace: hlc-site
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
