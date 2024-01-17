@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-hlc-html
+data:
+{{ tpl (.Files.Glob "site/**.html").AsConfig . | indent 2 }}
+---
+apiVersion: v1
+kind: Secret
+type: Generic
+metadata:
+  name: hlc-gif
+binaryData:
+  bob-ross.gif: |-
+    {{ .Files.Get "site/bob-ross.gif" | b64enc | indent 4 }}
+---
+apiVersion: v1
+kind: Secret
+type: Generic
+metadata:
+  name: hlc-mp3
+binaryData:
+  hlc.mp3: |-
+    {{ .Files.Get "site/hlc.mp3" | b64enc | indent 4 }}
