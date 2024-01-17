@@ -1,18 +1,16 @@
-{{- if eq .Values.bind.enabled "true" }}
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: bind
-  namespace: bind
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
-spec:
-  destination:
-    namespace: bind
-    server: {{ .Values.spec.destination.server }}
-  project: default
-  source:
-    path: bind
-    repoURL: https://github.com/eaglerock1337/happy-little-cloud
-    targetRevision: HEAD
-{{- end }}
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: bind
+#   namespace: bind
+#   finalizers:
+#   - resources-finalizer.argocd.argoproj.io
+# spec:
+#   destination:
+#     namespace: bind
+#     server: {{ .Values.spec.destination.server }}
+#   project: default
+#   source:
+#     path: bind
+#     repoURL: https://github.com/eaglerock1337/happy-little-cloud
+#     targetRevision: HEAD
