@@ -1,5 +1,4 @@
-{{- if .Values.bind.enabled }}
-# Imma make a bind server here
+{{ if .Values.bind.enabled }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -16,4 +15,4 @@ spec:
     path: bind
     repoURL: https://github.com/eaglerock1337/happy-little-cloud
     targetRevision: HEAD
-{{- end }}
+{{ end }}

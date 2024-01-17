@@ -1,5 +1,4 @@
-{{- if .Values.hlc-site.enabled }}
-# Imma make the happy litle cloud single-serving site here
+{{ if .Values.hlc-site.enabled }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -16,4 +15,10 @@ spec:
     path: hlc-site
     repoURL: https://github.com/eaglerock1337/happy-little-cloud
     targetRevision: HEAD
-{{- end }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+{{ end }}
