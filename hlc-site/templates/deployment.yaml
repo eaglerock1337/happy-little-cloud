@@ -46,14 +46,26 @@ spec:
               path: /
               port: http
           volumeMounts:
-            - mountPath: /usr/share/nginx/html
-              name: html-directory
+            - name: html-directory
+              mountPath: /usr/share/nginx/html
+            - name: hlc-mp3
+              mountPath: /usr/share/nginx/html/hlc.mp3
+              subPath: hlc.mp3
+            - name: bob-ross-gif
+              mountPath: /usr/share/nginx/html/bob-ross.gif
+              subPath: bob-ross.gif
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
         - name: html-directory
           configMap:
             name: cm-hlc-html
+        - name: hlc-mp3
+          secret:
+            secretName: hlc-mp3
+        - name: bob-ross-gif
+          secret:
+            secretName: bob-ross-gif
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
