@@ -47,12 +47,13 @@ spec:
               port: http
           volumeMounts:
             - name: html-directory
-              mountPath: /usr/share/nginx/html
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
             - name: hlc-mp3
-              mountPath: /usr/share/nginx/html
+              mountPath: /usr/share/nginx/html/hlc.mp3
               subPath: hlc.mp3
             - name: bob-ross-gif
-              mountPath: /usr/share/nginx/html
+              mountPath: /usr/share/nginx/html/bob-ross.gif
               subPath: bob-ross.gif
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
