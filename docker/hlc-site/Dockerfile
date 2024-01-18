@@ -1,7 +1,6 @@
-FROM nginx:alpine-slim
+FROM nginx
 
 LABEL maintainer="Peter Marks <peter.marks@gmail.com>"
 
 COPY site/ /usr/share/nginx/html/
 
-CMD ["nginx", "-g", "daemon off;"]
