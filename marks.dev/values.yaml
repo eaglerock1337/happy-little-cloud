@@ -1,14 +1,14 @@
-# Production Happy Little Cloud values for hlc-site.
+# Default values for marks.dev.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 4
+replicaCount: 1
 
 image:
-  repository: eaglerock/hlc-site
+  repository: eaglerock/marks.dev
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: latest
+  tag: ""
 
 imagePullSecrets: []
 nameOverride: ""
@@ -41,28 +41,32 @@ service:
   port: 80
 
 ingress:
-  enabled: true
-  className: "traefik"
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: hlc.marks.dev
+    - host: marks.dev.local
       paths:
         - path: /
           pathType: ImplementationSpecific
-  tls:
-    - secretName: hlc-site-tls
-      hosts:
-        - hlc.marks.dev
+  tls: []
+  #  - secretName: marks-dev-tls
+  #    hosts:
+  #      - marks.dev.local
 
-resources:
-  limits:
-    cpu: 100m
-    memory: 128Mi
-  requests:
-    cpu: 100m
-    memory: 128Mi
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
 
 autoscaling:
   enabled: false
@@ -76,4 +80,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-

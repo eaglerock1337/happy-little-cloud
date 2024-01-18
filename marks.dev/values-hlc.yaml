@@ -1,12 +1,12 @@
-# Production Happy Little Cloud values for hlc-site.
+# Production Happy Little Cloud values for marks.dev.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 4
+replicaCount: autoscaling
 
 image:
-  repository: eaglerock/hlc-site
-  pullPolicy: IfNotPresent
+  repository: eaglerock/marks.dev
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: latest
 
@@ -47,14 +47,14 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
   hosts:
-    - host: hlc.marks.dev
+    - host: marks.dev
       paths:
         - path: /
           pathType: ImplementationSpecific
   tls:
-    - secretName: hlc-site-tls
+    - secretName: marks-dev-tls
       hosts:
-        - hlc.marks.dev
+        - marks.dev
 
 resources:
   limits:
@@ -65,10 +65,10 @@ resources:
     memory: 128Mi
 
 autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
+  enabled: true
+  minReplicas: 4
+  maxReplicas: 12
+  targetCPUUtilizationPercentage: 40
   # targetMemoryUtilizationPercentage: 80
 
 nodeSelector: {}
@@ -76,4 +76,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-

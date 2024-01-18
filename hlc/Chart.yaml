@@ -1,10 +1,10 @@
 apiVersion: v2
 name: hlc
-description: "'Happy Little Cloud' Raspberry-Pi Kubernetes Cluster"
+description: Happy Little Cloud Raspberry-Pi Kubernetes Cluster
 
 type: application
-version: 0.1.0
-appVersion: "0.1.0"
+version: 1.0.0
+appVersion: "1.0.0"
 maintainers:
   - name: Peter Marks
     url: https://marks.dev/
