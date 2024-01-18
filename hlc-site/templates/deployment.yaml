@@ -60,12 +60,15 @@ spec:
         - name: html-directory
           configMap:
             name: cm-hlc-html
+          defaultMode: 0755
         - name: hlc-mp3
           secret:
             secretName: hlc-mp3
+          defaultMode: 0755
         - name: bob-ross-gif
           secret:
             secretName: bob-ross-gif
+          defaultMode: 0755
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
