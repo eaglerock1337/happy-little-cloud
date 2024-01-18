@@ -10,7 +10,7 @@ kind: Secret
 type: Generic
 metadata:
   name: hlc-gif
-binaryData:
+data:
   bob-ross.gif: {{ .Files.Get "site/bob-ross.gif" | b64enc }}
 ---
 apiVersion: v1
@@ -18,5 +18,5 @@ kind: Secret
 type: Generic
 metadata:
   name: hlc-mp3
-binaryData:
+data:
   hlc.mp3: {{ .Files.Get "site/hlc.mp3" | b64enc }}
