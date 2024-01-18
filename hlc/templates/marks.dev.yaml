@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: marks.dev
+  name: marks-dot-dev
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: marks-dev
+    namespace: marks-dot-dev
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
