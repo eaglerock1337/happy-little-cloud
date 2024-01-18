@@ -2,44 +2,6 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-hlc-site:
-  enabled: true
-  ingress:
-    enabled: true
-    className: "traefik"
-    annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-prod
-      kubernetes.io/ingress.class: nginx
-      kubernetes.io/tls-acme: "true"
-      traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
-    hosts:
-      - host: hlc.marks.dev
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
-    tls:
-      - secretName: hlc-site-tls
-        hosts:
-          - hlc.marks.dev
-  resources:
-    limits:
-      cpu: 100m
-      memory: 128Mi
-    requests:
-      cpu: 100m
-      memory: 128Mi
-
-resources:
-  limits:
-    cpu: 100m
-    memory: 128Mi
-  requests:
-    cpu: 100m
-    memory: 128Mi
-
-bind:
-  enabled: false
-
 spec:
   destination:
     server: https://kubernetes.default.svc

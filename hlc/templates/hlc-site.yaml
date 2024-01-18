@@ -14,6 +14,9 @@ spec:
     path: hlc-site
     repoURL: https://github.com/eaglerock1337/happy-little-cloud
     targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values-hlc.yaml
   syncPolicy:
     automated:
       prune: true
