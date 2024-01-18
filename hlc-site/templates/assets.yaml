@@ -9,7 +9,7 @@ apiVersion: v1
 kind: Secret
 type: Generic
 metadata:
-  name: hlc-gif
+  name: bob-ross-gif
 data:
   bob-ross.gif: {{ .Files.Get "site/bob-ross.gif" | b64enc }}
 ---
