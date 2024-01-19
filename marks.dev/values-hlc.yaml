@@ -11,8 +11,8 @@ image:
   tag: latest
 
 imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+nameOverride: "marks.dev"
+fullnameOverride: "marks.dev"
 
 serviceAccount:
   # Specifies whether a service account should be created
