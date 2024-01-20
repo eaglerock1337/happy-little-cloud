@@ -192,6 +192,57 @@ The following is a record of the deployment of Happy Little Cloud, my Raspberry-
   - `argocd login argocd.marks.dev`
   - Test deployment:
   - `argocd app create guestbook --repo https://github.com/argoproj/argocd-example-apps.git --path guestbook --dest-server https://kubernetes.default.svc --dest-namespace default`
+  - Didn't work as expected, but it appears to be the template fault
+  - Ready to start deploying!
+
+## Stage 3 - First Public Services
+
+Stage Goals:
+
+- HLC Microsite
+- marks.dev website
+- marks.dev GitHub Actions pipeline
+- mr-poopybutthole Discord bot
+- prometheus cluster montioring
+- grafana dashboard/observability service
+- bind9 internal recursive DNS server
+- upptime status website
+
+### Stage 3.1 - Let's build just a happy little cloud
+
+- Realize the quote is "Let's build just a happy little cloud" for a start...
+  - It often helps to know the inspiration for this whole damn thing in the first place
+- App of Apps design
+  - A single app defining an entire cluster of apps
+  - [Literally just followed the docs](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/)
+- Happy Little Cloud Helm chart
+  - First actual helm chart
+  - Inspired by [butt.holdings](http://butt.holdings)
+  - Used YouTube video downloader to download episode
+  - Used Gifcurry AppImage to edit gif
+  - Attempted configMap with binaryData (base64 encoded)
+  - Initial attempt failed because configmaps were too large
+  - Temporarily set up low-res gif to get it to work
+  - Added Docker image to upload high-res assets
+  - Got it online finally! Cert-manager works too!
+- Mr. PoopyButthole Discord Bot Helm chart
+  - Stupid simple single pod deployment
+  - Use stripped down Helm chart template
+  - Worked way too easily
+  - How nice of me to leave a stupidly bad security issue
+  - Definitely need to fix that soon
+- marks.dev
+  - Doing very well, I'm just going right for the gold
+  - It worked way too easily to be honest
+  - I guess I am just used to way more difficult problems
+  - I do need a way to fix the build pipeline tho
+- marks.dev GitHub Actions pipeline
+  - I really miss GitHub Actions...it's Azure DevOps without all the bullshit
+  - After Jenkins and Azure DevOps Pipelines, this is a piece of cake
+  - It took some fighting, but it was not super hard
+  - GitHub Secrets are good and easy, variables not so much
+  - Once I handled the quirks, it went quite well
+  - Only took about 15 builds to get it running!
 
 
 ```text
