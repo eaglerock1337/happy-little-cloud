@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker image push --tag eaglerock/hlc-site:latest
+docker image push eaglerock/hlc-site:latest
