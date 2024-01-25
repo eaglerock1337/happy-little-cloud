@@ -23,7 +23,7 @@ spec:
               cert-manager.io/cluster-issuer: letsencrypt-prod
               traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
             hosts:
-              - host: prometheus.marks.dev
+              - prometheus.marks.dev
             tls:
               - secretName: prometheus-server-tls
                 hosts:
