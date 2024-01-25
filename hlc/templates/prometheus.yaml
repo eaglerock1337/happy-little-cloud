@@ -19,6 +19,9 @@ spec:
         server:
           ingress:
             enabled: true
+            annotations:
+              cert-manager.io/cluster-issuer: letsencrypt-prod
+              traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
             hosts:
               - prometheus.marks.dev
             tls:
