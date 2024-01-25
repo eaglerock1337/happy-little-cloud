@@ -28,14 +28,14 @@ spec:
               hosts:
                 - grafana.marks.dev
         datasources: {}
-         datasources.yaml:
-           apiVersion: 1
-           datasources:
-           - name: Prometheus
-             type: prometheus
-             url: http://prometheus-server.prometheus
-             access: proxy
-             isDefault: true
+          datasources.yaml:
+            apiVersion: 1
+            datasources:
+            - name: Prometheus
+              type: prometheus
+              url: http://prometheus-server.prometheus
+              access: proxy
+              isDefault: true
         dashboardProviders:
           dashboardproviders.yaml:
             apiVersion: 1
