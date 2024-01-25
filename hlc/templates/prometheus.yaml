@@ -11,9 +11,20 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
-    path: prometheus
-    repoURL: https://prometheus-community.github.io/helm-charts
+    path: charts/prometheus
+    repoURL: https://github.com/prometheus-community/helm-charts/
     targetRevision: HEAD
+    helm:
+      valuesObject:
+        server:
+          ingress:
+            enabled: true
+            hosts:
+              - prometheus.marks.dev
+            tls:
+              - secretName: prometheus-server-tls
+                hosts:
+                  - prometheus.marks.dev
   syncPolicy:
     automated:
       prune: true
