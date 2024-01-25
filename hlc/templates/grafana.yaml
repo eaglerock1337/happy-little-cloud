@@ -27,7 +27,7 @@ spec:
             - secretName: grafana-server-tls
               hosts:
                 - grafana.marks.dev
-        datasources: {}
+        datasources:
           datasources.yaml:
             apiVersion: 1
             datasources:
