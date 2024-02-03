@@ -244,6 +244,29 @@ Stage Goals:
   - Once I handled the quirks, it went quite well
   - Only took about 15 builds to get it running!
 
+### Stage 3.2 - Getting serious
+
+- Prometheus and Grafana
+  - Easy simple single-file templates in `hlc` chart
+  - Prometheus install was very fast and simple, only required an ingress setup
+  - Grafana was similarly simple, as well as automatic connection to Prometheus
+  - Dashboards installed and configured by default, so far so good!
+- Issue with Prometheus
+  - Storage was using the wrong `StorageClass`, not using the `nfs-client` by default
+  - Required manually patching the default `StorageClass` as follows:
+    - `k patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'`
+    - `k patch storageclass nfs-client -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'`
+  - Deleting the PVCs
+    - `k delete pvc -n prometheus prometheus-server`
+    - `k delete pvc -n prometheus storage-prometheus-alertmanager-0`
+  - Restarting services
+    - `k rollout restart -n prometheus deploy/prometheus-server`
+    - `k rollout restart -n prometheus statefulset/prometheus-alertmanager`
+  - Services were not coming up until the nfs-subdir-external-provisioner was restarted:
+    - `k rollout restart -n kube-system deploy/nfs-subdir-external-provisioner`
+- Grafana login issue
+  - Can login with default admin account, but the password keeps changing
+  - 
 
 ```text
 (You should delete the initial secret afterwards as suggested by the Getting Started Guide: https://argo-cd.readthedocs.io/en/stable/getting_started/#4-login-using-the-cli)

@@ -16,6 +16,8 @@ spec:
     targetRevision: HEAD
     helm:
       valuesObject:
+        admin:
+          existingsecret: grafana
         ingress:
           enabled: true
           annotations:
