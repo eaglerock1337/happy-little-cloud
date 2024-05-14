@@ -39,6 +39,14 @@ spec:
           #         key: prod
           #   - name: MAIN_CHANNEL
           #     value: "362982581068890113"
+          volumeMounts:
+            - mountPath: /code/.env
+              name: envfile
+              subpath: .env
+      volumes:
+        - name: envfile
+          secret:
+            secretName: envfile
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
