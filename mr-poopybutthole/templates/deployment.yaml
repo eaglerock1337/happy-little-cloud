@@ -33,22 +33,17 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          # env:
-          #   - name: DISCORD_TOKEN
-          #     valueFrom:
-          #       secretKeyRef:
-          #         name: github-token
-          #         key: prod
-          #   - name: MAIN_CHANNEL
-          #     value: "362982581068890113"
-          volumeMounts:
-            - mountPath: /code/.env
-              name: envfile
-              subpath: .env
-      volumes:
-        - name: envfile
-          secret:
-            secretName: envfile
+          env:
+            - name: DISCORD_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: github-token
+                  key: DISCORD_TOKEN
+            - name: MAIN_CHANNEL
+              valueFrom:
+                secretKeyRef:
+                  name: github-token
+                  key: MAIN_CHANNEL
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
