@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana-dashboard
+  namespace: grafana
+  annotations:
+    nginx.ingress.kubernetes.io/permanent-redirect: https://dashboard.marks.dev/public-dashboards/
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      try_files /6aa347136d9b4d2d8424966ffbf60a8f;
+    # nginx.ingress.kubernetes.io/app-root: /public-dashboards/6aa347136d9b4d2d8424966ffbf60a8f
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: dashboard.marks.dev
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: grafana
+            port:
+              number: 80
+  tls:
+  - hosts:
+      - dashboard.marks.dev
+    secretName: dashboard-marks-dev-tls

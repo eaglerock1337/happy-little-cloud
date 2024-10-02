@@ -266,8 +266,25 @@ Stage Goals:
     - `k rollout restart -n kube-system deploy/nfs-subdir-external-provisioner`
 - Grafana login issue
   - Can login with default admin account, but the password keeps changing
-  - 
+  - Attempted removing the Helm metadata, did not help
+  - Analyzed the chart and it appears to erroneously force password generation
+  - [https://github.com/helm/helm-www/issues/1259](https://github.com/helm/helm-www/issues/1259)
+  - Above bug notes this in the chart, and reading the chart corroborates
+  - It is supposed to read the existing secret data but does not appear to do so correctly
+  - Tried setting `admin.existingSecret: true` based on my reading of the chart
+  - Using `immutable: true` for the secret (k8s features since `1.22`) is working so far
+- Blocked on Storage Issues
+  - `hlc-401` continues to have its filesystems go read-only, both the external SSD and USB drives
+  - storage is not reliable for more than a couple of day maximum
+  - Grafana and Prometheus were proven out temporarily, but are no longer working due to lack of storage
+  - Need to re-approach the plan
+  - Moving on to HLC Mark 3
+
+TODOs:
 
 ```text
 (You should delete the initial secret afterwards as suggested by the Getting Started Guide: https://argo-cd.readthedocs.io/en/stable/getting_started/#4-login-using-the-cli)
 ```
+
+Result: Failure
+Reason: Cheapening out on storage and not doing it right in the first place
