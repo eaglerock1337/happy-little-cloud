@@ -51,6 +51,10 @@ ingress:
       paths:
         - path: /
           pathType: ImplementationSpecific
+    - host: progressquest.marks.dev
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
   tls:
     - secretName: pq-marks-dev-tls
       hosts:
