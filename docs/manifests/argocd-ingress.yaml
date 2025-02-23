@@ -1,14 +1,14 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: argocd-server-ingerss
+  name: argocd-server-ingress
   namespace: argocd
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
 spec:
   rules:
-    - host: whoami.marks.dev
+    - host: argocd.marks.dev
       http:
         paths:
           - path: /
@@ -19,7 +19,7 @@ spec:
                 port:
                   number: 80
   tls:
-    - secretName: whoami-tls
+    - secretName: argocd-tls
       hosts:
         - argocd.marks.dev
   ingressClassName: traefik
