@@ -55,6 +55,7 @@ ingress:
     - secretName: marks-dev-tls
       hosts:
         - marks.dev
+        - www.marks.dev
 
 resources:
   limits:
