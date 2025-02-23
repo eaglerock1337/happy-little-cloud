@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pq-web
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: pq-web
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  source:
+    path: pq-web
+    repoURL: https://github.com/eaglerock1337/happy-little-cloud
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values-hlc.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

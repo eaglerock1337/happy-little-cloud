@@ -5,14 +5,14 @@
 replicaCount: autoscaling
 
 image:
-  repository: eaglerock/marks.dev
+  repository: eaglerock/pq-web
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   # tag: latest
 
 imagePullSecrets: []
-nameOverride: "marks-dev"
-fullnameOverride: "marks-dev"
+nameOverride: "pq-web"
+fullnameOverride: "pq-web"
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -47,14 +47,15 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
   hosts:
-    - host: marks.dev
+    - host: pq.marks.dev
       paths:
         - path: /
           pathType: ImplementationSpecific
   tls:
-    - secretName: marks-dev-tls
+    - secretName: pq-marks-dev-tls
       hosts:
-        - marks.dev
+        - pq.marks.dev
+        - progressquest.marks.dev
 
 resources:
   limits:
