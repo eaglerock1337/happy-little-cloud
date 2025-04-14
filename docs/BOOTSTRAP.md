@@ -180,6 +180,7 @@ The following is a record of the deployment of Happy Little Cloud, my Raspberry-
 - Install ArgoCD
   - Create cert first `k apply -f argocd-certs.yaml`
   - Create ingress `k apply -f argocd-ingress.yaml`
+  - Add `argo` repo: `helm repo add argo https://argoproj.github.io/argo-helm`
   - Install chart `helm install -n argocd argocd argo/argo-cd -f argocd-values.yaml`
   - Needed to upgrade values multiple times as I figured out Traefik
   - Eventually did not use the `IngressRoute` but used the built-in `Ingress` as part of the ArgoCD Helm Chart

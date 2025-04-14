@@ -82,7 +82,32 @@ PRESET_USER_SHELL="bash"
     - This will interfere with the power strip in Rack slot 9
     - 90-Degree USB-C Male-to-Female Adapter fixes this ([Amazon](https://www.amazon.com/dp/B0CQH48YFQ?ref=ppx_yo2ov_dt_b_fed_asin_title))
 
+### 1.3 Interlude - Fix the Existing Cluster
+
+- Current issues:
+  - I'm having issues with authenticating to the cluster from my workstation
+    - It keeps timing out and will work only sparingly
+    - I need to manage the cluster by logging in to one of the control-plane nodes
+  - ArgoCD does not have full information
+    - Has an issue with loading data and cache
+    - Argo works fine, but the UI doesn't work correctly, only displaying basic information
+- Fixes:
+  - Authentication and working on the command-line with `kubectl`
+    - Trying to use Helm on `hlc-402` failed, so I'm resorting to fixing my desktop access again
+    - I follow my bootstrap steps, including copying the kubeconfig from the control plane node
+    - Works perfectly afterwards...looks like each control-plane might have its own kubeconfig?
+    - Either way, I now know how to regain access to my cluster and don't need to fight with logging in and waiting for it to work
+  - ArgoCD
+    - Now that I have my `kubectl` access fixed, I try a Helm upgrade of argocd...still fails
+    - Do some googling, someone recommends restarting the `argocd-application-controller` `statefulset`
+    - This fails
+    - However, I _do_ notice te `argocd-redis-ha-server` statefulset is unhealthy
+    - Fixing this fixes everything...it was literally a cache issue the whole damn time
+    - Now I know for next time, while ArgoCD is stateless, it has throwaway state in redis cache
+
 ## Future Setup
 
+- Upgrade to latest k8s supported by `k3s`
+- Upgrade ArgoCD to latest version as well
 - Using NVMe as root partition
   - [Armbian Forum find for nanopc that should work](https://forum.armbian.com/topic/13617-nanopc-t4-boot-from-a-sdcard-use-the-nvme-as-the-root-partition-quick-and-very-dirty/)
