@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tomeclicker
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: tomeclicker
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  source:
+    path: marks.dev
+    repoURL: https://github.com/eaglerock1337/tomeclicker
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values-hlc.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

@@ -1,0 +1,18 @@
+apiVersion: v2
+name: tomeclicker
+description: TomeClicker - An incremental RPG clicking game
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+home: https://tomeclicker.marks.dev
+sources:
+  - https://github.com/eaglerock1337/tomeclicker
+maintainers:
+  - name: eaglerock1337
+    email: eaglerock@marks.dev
+keywords:
+  - game
+  - incremental
+  - clicker
+  - rpg
+  - svelte
