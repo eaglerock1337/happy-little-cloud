@@ -12,7 +12,7 @@ spec:
   project: default
   source:
     path: tomeclicker
-    repoURL: https://github.com/eaglerock1337/tomeclicker
+    repoURL: https://github.com/eaglerock1337/happy-little-cloud
     targetRevision: HEAD
     helm:
       valueFiles:
