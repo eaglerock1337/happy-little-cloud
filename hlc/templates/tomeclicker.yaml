@@ -11,7 +11,7 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
-    path: marks.dev
+    path: tomeclicker
     repoURL: https://github.com/eaglerock1337/tomeclicker
     targetRevision: HEAD
     helm:
