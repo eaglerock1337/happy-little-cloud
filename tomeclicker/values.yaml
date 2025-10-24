@@ -96,8 +96,8 @@ affinity: {}
 #   failureThreshold: 3
 
 # Deployment strategy
-strategy:
-  type: RollingUpdate
-  rollingUpdate:
-    maxUnavailable: 0
-    maxSurge: 1
+# strategy:
+#   type: RollingUpdate
+#   rollingUpdate:
+#     maxUnavailable: 0
+#     maxSurge: 1
