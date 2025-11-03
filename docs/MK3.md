@@ -97,11 +97,12 @@ PRESET_USER_SHELL="bash"
     - I follow my bootstrap steps, including copying the kubeconfig from the control plane node
     - Works perfectly afterwards...looks like each control-plane might have its own kubeconfig?
     - Either way, I now know how to regain access to my cluster and don't need to fight with logging in and waiting for it to work
+    - Could also be due to `hlc-402` being an upgraded version of k8s, so that might be the reason for a new kubeconfig
   - ArgoCD
     - Now that I have my `kubectl` access fixed, I try a Helm upgrade of argocd...still fails
     - Do some googling, someone recommends restarting the `argocd-application-controller` `statefulset`
     - This fails
-    - However, I _do_ notice te `argocd-redis-ha-server` statefulset is unhealthy
+    - However, I _do_ notice the `argocd-redis-ha-server` statefulset is unhealthy
     - Fixing this fixes everything...it was literally a cache issue the whole damn time
     - Now I know for next time, while ArgoCD is stateless, it has throwaway state in redis cache
 
