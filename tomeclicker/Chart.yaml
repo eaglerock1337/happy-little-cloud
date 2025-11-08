@@ -3,7 +3,7 @@ name: tomeclicker
 description: TomeClicker - An incremental RPG clicking game
 type: application
 version: 1.0.0
-appVersion: "0.2.3"
+appVersion: "0.2.4"
 home: https://tomeclicker.marks.dev
 sources:
   - https://github.com/eaglerock1337/tomeclicker
